@@ -1,0 +1,12 @@
+start = RECEIVEPOST(null, 'cache');
+
+// getvar = SCRIPT(start, function(){
+//  var input = JSON.parse(start.out._body);
+// });
+
+call_api =  PUT(start, 'http://twitkiller-mc.mybluemix.net/cache/'+start.out._body.id , 
+{ 'data' :  start.out._body.tweet }, 
+{contentType: 'application/json'}
+);
+
+reply = REPLYPOST(call_api, 'cache', 'Data submitted to cache engine');
